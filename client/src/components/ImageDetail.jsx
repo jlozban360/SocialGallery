@@ -6,7 +6,7 @@ const ImageDetail = ({ imageId, userId }) => {
   const [image, setImage] = useState(null);
 
   useEffect(() => {
-    axios.get(`/api/imagenes/${imageId}`)
+    axios.get(`http://localhost:5000/api/imagenes/${imageId}`)
       .then(response => {
         setImage(response.data);
       })

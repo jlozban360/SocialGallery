@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const Register = ({ onRegister }) => {
   const [usuario, setUsuario] = useState('');
@@ -7,15 +8,18 @@ const Register = ({ onRegister }) => {
   const [contraseña, setContraseña] = useState('');
   const [nombre, setNombre] = useState('');
   const [apellidos, setApellidos] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/api/usuarios/registro', { usuario, email, contraseña, nombre, apellidos })
+    axios.post('http://localhost:5000/api/usuarios/registro', { usuario, email, contraseña, nombre, apellidos })
       .then(response => {
         onRegister(response.data);
         alert('Éxito al registrarse');
+        navigate('/'); // Redirigir al inicio después del inicio de sesión exitoso
       })
       .catch(error => {
+        alert('Error al registrarse');
         console.error('Error registering:', error);
       });
   };

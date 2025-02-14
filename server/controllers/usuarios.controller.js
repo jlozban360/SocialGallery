@@ -15,7 +15,7 @@ exports.registrarUsuario = (req, res) => {
 
     Usuario.crear(usuario, email, hash, nombre, apellidos, (err, result) => {
         if (err) {
-            return res.status(500).json({ error: err.message });
+            return res.status(500).json({ error: "Error al registrar usuario" });
         }
         res.json({ message: "Usuario registrado", id: result.insertId });
     });
@@ -28,15 +28,10 @@ exports.iniciarSesion = (req, res) => {
         return res.status(400).json({ error: "Usuario y contraseña son obligatorios" });
     }
 
-    Usuario.obtenerPorUsuario(usuario, (err, results) => {
-        if (err) {
-            return res.status(500).json({ error: err.message });
-        }
-        if (results.length === 0) {
+    Usuario.obtenerPorUsuario(usuario, (err, user) => {
+        if (err || !user) {
             return res.status(404).json({ error: "Usuario no encontrado" });
         }
-
-        const user = results[0];
 
         // Verificar la contraseña con bcryptjs
         const contraseñaValida = bcrypt.compareSync(contraseña, user.contraseña);
@@ -51,14 +46,18 @@ exports.iniciarSesion = (req, res) => {
             { expiresIn: "1h" }
         );
 
-        res.json({ message: "Inicio de sesión exitoso", token });
+        res.json({ 
+            message: "Inicio de sesión exitoso", 
+            token,
+            user: { id: user.id, usuario: user.usuario } // ✅ Agrega el usuario aquí
+          });
     });
 };
 
 exports.obtenerUsuarios = (req, res) => {
     Usuario.obtenerTodos((err, results) => {
         if (err) {
-            return res.status(500).json({ error: err.message });
+            return res.status(500).json({ error: "Error al obtener usuarios" });
         }
         res.json(results);
     });
@@ -71,14 +70,11 @@ exports.obtenerUsuarioPorId = (req, res) => {
         return res.status(400).json({ error: "Se requiere el ID del usuario" });
     }
 
-    Usuario.obtenerPorId(id, (err, results) => {
-        if (err) {
-            return res.status(500).json({ error: err.message });
-        }
-        if (results.length === 0) {
+    Usuario.obtenerPorId(id, (err, user) => {
+        if (err || !user) {
             return res.status(404).json({ error: "Usuario no encontrado" });
         }
-        res.json(results[0]);
+        res.json(user);
     });
 };
 
@@ -91,7 +87,7 @@ exports.eliminarUsuario = (req, res) => {
 
     Usuario.eliminar(id, (err, result) => {
         if (err) {
-            return res.status(500).json({ error: err.message });
+            return res.status(500).json({ error: "Error al eliminar usuario" });
         }
         if (result.affectedRows === 0) {
             return res.status(404).json({ error: "Usuario no encontrado" });

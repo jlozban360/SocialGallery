@@ -7,7 +7,7 @@ const Slideshow = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    axios.get('/api/imagenes')
+    axios.get('http://localhost:5000/api/imagenes')
       .then(response => {
         setImages(response.data);
       })

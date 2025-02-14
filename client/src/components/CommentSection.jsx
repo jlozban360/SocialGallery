@@ -6,7 +6,7 @@ const CommentSection = ({ imageId, userId }) => {
   const [newComment, setNewComment] = useState('');
 
   useEffect(() => {
-    axios.get(`/api/comentarios/${imageId}`)
+    axios.get(`http://localhost:5000/api/comentarios/${imageId}`)
       .then(response => {
         setComments(response.data);
       })
@@ -17,7 +17,7 @@ const CommentSection = ({ imageId, userId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/api/comentarios/agregar', { imagen_id: imageId, usuario_id: userId, texto: newComment })
+    axios.post('http://localhost:5000/api/comentarios/agregar', { imagen_id: imageId, usuario_id: userId, texto: newComment })
       .then(response => {
         setComments([...comments, response.data]);
         setNewComment('');

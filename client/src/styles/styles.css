@@ -1,214 +1,162 @@
-/* Estilos generales */
+/* styles.css */
+
+/* General Styles */
 body {
-    background-color: #121212;
-    color: #ffffff;
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-  }
-  
-  nav {
-    width: 100%;
-    padding: 20px;
-    background-color: #1db954;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  nav a {
-    color: #ffffff;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 1.2em;
-    transition: color 0.3s ease;
-  }
-  
-  nav a:hover {
-    color: #1ed760;
-  }
-  
-  nav span {
-    margin-left: auto;
-    font-size: 1.2em;
-  }
-  
-  /* Estilos para el formulario de login y registro */
-  form {
-    background-color: #181818;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 300px;
-    margin: 20px auto;
-    text-align: center;
-  }
-  
-  form h2 {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  form input {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 5px;
-    background-color: #282828;
-    color: #ffffff;
-    font-size: 1em;
-  }
-  
-  form button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #1db954;
-    color: #ffffff;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  form button:hover {
-    background-color: #1ed760;
-  }
-  
-  /* Estilos para el slideshow */
-  .slideshow {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 20px auto;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .slideshow-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-  }
-  
-  .slide {
-    min-width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .slide img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .prev-button, .next-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #ffffff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: background-color 0.3s ease;
-  }
-  
-  .prev-button:hover, .next-button:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-  }
-  
-  .prev-button {
-    left: 10px;
-  }
-  
-  .next-button {
-    right: 10px;
-  }
-  
-  .no-images {
-    text-align: center;
-    font-size: 1.5em;
-    margin-top: 20px;
-    color: #888888;
-  }
-  
-  /* Estilos para la sección de imágenes */
-  .image-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    padding: 20px;
-  }
-  
-  .image-item {
-    flex: 1 1 calc(33.333% - 40px);
-    box-sizing: border-box;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  .image-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-  
-  .image-item p {
-    padding: 10px;
-    text-align: center;
-    background-color: #181818;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-  
-  /* Estilos para la sección de comentarios */
-  .comment {
-    background-color: #181818;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
-  
-  .comment p {
-    margin: 0;
-  }
-  
-  /* Estilos para el perfil de usuario */
-  .profile {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .profile h2 {
-    margin-bottom: 20px;
-    font-size: 2em;
-  }
-  
-  /* Estilos para el botón de selección de foto aleatoria */
-  .random-photo-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #1db954;
-    color: #ffffff;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-  }
-  
-  .random-photo-button:hover {
-    background-color: #1ed760;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+h2, h3 {
+  color: #555;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+input, button {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Navigation Styles */
+nav {
+  background-color: #007BFF;
+  padding: 15px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+nav span {
+  color: white;
+  font-weight: bold;
+}
+
+/* CommentSection Styles */
+.comment {
+  background-color: #fff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.comment p {
+  margin: 0;
+}
+
+/* ImageDetail Styles */
+.image-detail img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.image-detail p {
+  font-size: 1.1em;
+  color: #666;
+}
+
+/* Profile Styles */
+.profile {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile p {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+
+/* Slideshow Styles */
+.slideshow {
+  position: relative;
+  max-width: 800px;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.slideshow-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+}
+
+.prev-button, .next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.prev-button:hover, .next-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.prev-button {
+  left: 10px;
+}
+
+.next-button {
+  right: 10px;
+}
+
+/* No Images Message */
+.no-images {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2em;
+  color: #777;
+}

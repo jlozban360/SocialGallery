@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './../styles/styles.css';
 
 const Login = ({ onLogin }) => {
   const [usuario, setUsuario] = useState('');
@@ -9,10 +10,13 @@ const Login = ({ onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/api/usuarios/login', { usuario, contraseña })
+    axios.post('http://localhost:5000/api/usuarios/login', { usuario, contraseña })
       .then(response => {
-        onLogin(response.data);
-        alert('Éxito al iniciar sesión');
+        const { token, user } = response.data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('userId', user.id);
+        localStorage.setItem('username', user.usuario);
+        onLogin(user);
         navigate('/'); // Redirigir al inicio después del inicio de sesión exitoso
       })
       .catch(error => {

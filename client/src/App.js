@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Slideshow from './components/Slideshow';
 import Login from './components/Login';
@@ -9,13 +9,35 @@ import './styles/styles.css';
 
 const App = () => {
   const [userId, setUserId] = useState(null);
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const storedUserId = localStorage.getItem('userId');
+    const storedUsername = localStorage.getItem('username');
+
+    if (token && storedUserId && storedUsername) {
+      setUserId(storedUserId);
+      setUsername(storedUsername);
+    }
+  }, []);
 
   const handleLogin = (user) => {
     setUserId(user.id);
+    setUsername(user.usuario);
   };
 
   const handleRegister = (user) => {
     setUserId(user.id);
+    setUsername(user.usuario);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('username');
+    setUserId(null);
+    setUsername(null);
   };
 
   return (
@@ -26,7 +48,9 @@ const App = () => {
           {userId ? (
             <>
               <Link to="/perfil">Perfil</Link>
-              <span>Bienvenido, Usuario</span>
+              <span>Bienvenido, {username}</span>
+              <button onClick={handleLogout}>Subir Imagen</button>
+              <button onClick={handleLogout}>Cerrar Sesión</button>
             </>
           ) : (
             <>

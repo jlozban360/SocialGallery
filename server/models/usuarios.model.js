@@ -20,9 +20,9 @@ const Usuario = {
     },
 
     obtenerPorId: (id, callback) => {
-        db.query("SELECT id, usuario, nombre, apellidos, fecha_alta FROM usuarios WHERE id = ?", [id], (err, results) => {
+        db.query("SELECT id, usuario, nombre, apellidos, email, fecha_alta FROM usuarios WHERE id = ?", [id], (err, results) => {
             if (err) return callback(err);
-            callback(null, results);
+            callback(null, results[0]); // Return the first result directly
         });
     },
 
@@ -36,7 +36,7 @@ const Usuario = {
     obtenerPorUsuario: (usuario, callback) => {
         db.query("SELECT * FROM usuarios WHERE usuario = ?", [usuario], (err, results) => {
             if (err) return callback(err);
-            callback(null, results);
+            callback(null, results[0]); // Return the first result directly
         });
     }
 };
