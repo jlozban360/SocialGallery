@@ -27,6 +27,7 @@ if (!fs.existsSync(uploadsDir)) {
 router.post("/subir", upload.single("imagen"), imagenController.subirImagen);
 router.get("/", imagenController.obtenerImagenes);
 router.get("/:id", imagenController.obtenerImagenPorId);
+router.get("/usuario/:userId", imagenController.obtenerImagenesPorUsuario); // Nueva ruta
 router.delete("/:id", imagenController.eliminarImagen);
 
 module.exports = router;

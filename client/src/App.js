@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Slideshow from './components/Slideshow';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import ImageDetail from './components/ImageDetail';
-import UploadImage from './components/UploadImage'; // Importar el componente de subir imagen
 import './styles/styles.css';
 
 const App = () => {
   const [userId, setUserId] = useState(null);
-  const [username, setUsername] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -19,18 +17,15 @@ const App = () => {
 
     if (token && storedUserId && storedUsername) {
       setUserId(storedUserId);
-      setUsername(storedUsername);
     }
   }, []);
 
   const handleLogin = (user) => {
     setUserId(user.id);
-    setUsername(user.usuario);
   };
 
   const handleRegister = (user) => {
     setUserId(user.id);
-    setUsername(user.usuario);
   };
 
   const handleLogout = () => {
@@ -38,7 +33,6 @@ const App = () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
     setUserId(null);
-    setUsername(null);
   };
 
   return (
@@ -49,10 +43,7 @@ const App = () => {
           {userId ? (
             <>
               <Link to="/perfil">Perfil</Link>
-              <span>Bienvenido, {username}</span>
-              <Link to="/subir-imagen">
-                <button>Subir Imagen</button>
-              </Link>
+              <span>Bienvenido, {localStorage.getItem('username')}</span>
               <button onClick={handleLogout}>Cerrar Sesión</button>
             </>
           ) : (
@@ -63,12 +54,11 @@ const App = () => {
           )}
         </nav>
         <Routes>
-          <Route path="/" element={<Slideshow />} />
+          <Route path="/" element={<Slideshow userId={userId} />} />
           <Route path="/login" element={<Login onLogin={handleLogin} />} />
           <Route path="/registro" element={<Register onRegister={handleRegister} />} />
           <Route path="/perfil" element={<Profile userId={userId} />} />
           <Route path="/imagen/:id" element={<ImageDetail userId={userId} />} />
-          <Route path="/subir-imagen" element={<UploadImage userId={userId} />} />
         </Routes>
       </div>
     </Router>

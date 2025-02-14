@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './../styles/styles.css';
+import CommentSection from './CommentSection'; // Asegúrate de importar el componente CommentSection
+import './../styles/slideshow.css';
 
-const Slideshow = () => {
+const Slideshow = ({ userId }) => {
   const [images, setImages] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -37,7 +38,14 @@ const Slideshow = () => {
       <div className="slideshow-container" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
         {images.map((image, index) => (
           <div key={index} className="slide">
-            <img src={`/uploads/${image.ruta}`} alt={image.descripcion} />
+            <img src={`http://localhost:5000/${image.ruta}`} alt={image.descripcion} />
+            {userId ? (
+              <CommentSection imageId={image.id} userId={userId} />
+            ) : (
+              <div className="comment-login-message">
+                <p>Logeate para comentar</p>
+              </div>
+            )}
           </div>
         ))}
       </div>

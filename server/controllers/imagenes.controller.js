@@ -47,6 +47,21 @@ exports.obtenerImagenPorId = (req, res) => {
     });
 };
 
+exports.obtenerImagenesPorUsuario = (req, res) => {
+    const { userId } = req.params;
+
+    if (!userId) {
+        return res.status(400).json({ error: "Se requiere el ID del usuario" });
+    }
+
+    Imagen.obtenerPorUsuario(userId, (err, results) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        res.json(results);
+    });
+};
+
 exports.eliminarImagen = (req, res) => {
     const { id } = req.params;
 

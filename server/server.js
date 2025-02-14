@@ -23,3 +23,4 @@ app.use("/api/comentarios", comentarioRoutes);
 app.listen(port, () => {
     console.log(`✅ Servidor corriendo en http://localhost:${port}`);
 });
+

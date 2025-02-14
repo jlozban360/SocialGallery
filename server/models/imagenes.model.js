@@ -26,6 +26,17 @@ const Imagen = {
         });
     },
 
+    obtenerPorUsuario: (usuario_id, callback) => {
+        db.query(
+            "SELECT id, ruta, descripcion FROM imagenes WHERE usuario_id = ?",
+            [usuario_id],
+            (err, results) => {
+                if (err) return callback(err);
+                callback(null, results);
+            }
+        );
+    },
+
     eliminar: (id, callback) => {
         db.query("DELETE FROM imagenes WHERE id = ?", [id], (err, result) => {
             if (err) return callback(err);
