@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Slideshow from './components/Slideshow';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import ImageDetail from './components/ImageDetail';
+import UploadImage from './components/UploadImage'; // Importar el componente de subir imagen
 import './styles/styles.css';
 
 const App = () => {
@@ -49,7 +50,9 @@ const App = () => {
             <>
               <Link to="/perfil">Perfil</Link>
               <span>Bienvenido, {username}</span>
-              <button onClick={handleLogout}>Subir Imagen</button>
+              <Link to="/subir-imagen">
+                <button>Subir Imagen</button>
+              </Link>
               <button onClick={handleLogout}>Cerrar Sesión</button>
             </>
           ) : (
@@ -65,6 +68,7 @@ const App = () => {
           <Route path="/registro" element={<Register onRegister={handleRegister} />} />
           <Route path="/perfil" element={<Profile userId={userId} />} />
           <Route path="/imagen/:id" element={<ImageDetail userId={userId} />} />
+          <Route path="/subir-imagen" element={<UploadImage userId={userId} />} />
         </Routes>
       </div>
     </Router>
