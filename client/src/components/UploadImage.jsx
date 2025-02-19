@@ -26,7 +26,8 @@ const SubirImagen = ({ userId }) => {
       const response = await axios.post('http://localhost:5000/api/imagenes/subir', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
-      setMensaje('Imagen subida exitosamente.');
+      console.log('Response:', response.data); // Use the response
+      setMensaje('Imagen subida con éxito.');
       setFile(null);
       setDescripcion('');
     } catch (error) {

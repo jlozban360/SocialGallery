@@ -1,44 +1,87 @@
+/* Contenedor principal del slideshow */
+.slideshow-wrapper {
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Contenedor del slideshow */
 .slideshow {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Contenedor de las imágenes (se mueve con transform) */
 .slideshow-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 }
 
+/* Cada imagen ocupa el 100% del contenedor */
 .slide {
-    min-width: 100%;
-    box-sizing: border-box;
+  min-width: 100%;
 }
 
 .slide img {
-    width: 100%;
-    height: auto;
-    display: block;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Botones de navegación */
+.navigation-buttons {
+  position: inherit;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px; /* Espaciado antes de los comentarios */
 }
 
 .prev-button, .next-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.prev-button {
-    left: 10px;
-}
-
-.next-button {
-    right: 10px;
+  background-color: #0044cc;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.2s;
 }
 
 .prev-button:hover, .next-button:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+  background-color: #002b80;
+  transform: scale(1.1);
+}
+
+/* Sección de comentarios */
+.comment-section {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  background-color: #f0f8ff;
+  border-radius: 5px;
+  border-left: 4px solid #0044cc;
+  margin-top: 20px;
+}
+
+/* Cada comentario */
+.comment {
+  background-color: #ffffff;
+  padding: 10px;
+  margin: 10px 0;
+  border-left: 4px solid #0044cc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Mensaje de inicio de sesión */
+.comment-login-message {
+  font-style: italic;
+  color: #555;
+  margin-top: 10px;
+  text-align: center;
 }

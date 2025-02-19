@@ -17,7 +17,29 @@ exports.registrarUsuario = (req, res) => {
         if (err) {
             return res.status(500).json({ error: "Error al registrar usuario" });
         }
-        res.json({ message: "Usuario registrado", id: result.insertId });
+
+        // Crear objeto del usuario registrado
+        const newUser = {
+            id: result.insertId,
+            usuario,
+            email,
+            nombre,
+            apellidos
+        };
+
+        // Generar token JWT
+        const token = jwt.sign(
+            { id: newUser.id, usuario: newUser.usuario },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
+
+        // Responder con token y datos del usuario
+        res.json({
+            message: "Usuario registrado",
+            token,
+            user: newUser
+        });
     });
 };
 

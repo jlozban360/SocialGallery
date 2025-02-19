@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import Slideshow from './components/Slideshow';
 import Login from './components/Login';
 import Register from './components/Register';
 import Profile from './components/Profile';
 import ImageDetail from './components/ImageDetail';
-import './styles/styles.css';
+import SubirImagen from './components/UploadImage';
+import './styles/App.css';
+import './styles/Slideshow.css';
 
 const App = () => {
   const [userId, setUserId] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -33,17 +36,21 @@ const App = () => {
     localStorage.removeItem('userId');
     localStorage.removeItem('username');
     setUserId(null);
+    navigate('/');
   };
 
   return (
-    <Router>
-      <div>
-        <nav>
+    <div>
+      <nav>
+        <div>
           <Link to="/">Inicio</Link>
+          {userId && <Link to="/perfil">Perfil</Link>}
+        </div>
+        <div>
           {userId ? (
             <>
-              <Link to="/perfil">Perfil</Link>
-              <span>Bienvenido, {localStorage.getItem('username')}</span>
+              <span className="welcomeMsg">Bienvenido, {localStorage.getItem('username')}</span>
+              <button onClick={() => navigate('/subir-imagen')}>Subir Imagen</button>
               <button onClick={handleLogout}>Cerrar Sesión</button>
             </>
           ) : (
@@ -52,16 +59,17 @@ const App = () => {
               <Link to="/registro">Registrarse</Link>
             </>
           )}
-        </nav>
-        <Routes>
-          <Route path="/" element={<Slideshow userId={userId} />} />
-          <Route path="/login" element={<Login onLogin={handleLogin} />} />
-          <Route path="/registro" element={<Register onRegister={handleRegister} />} />
-          <Route path="/perfil" element={<Profile userId={userId} />} />
-          <Route path="/imagen/:id" element={<ImageDetail userId={userId} />} />
-        </Routes>
-      </div>
-    </Router>
+        </div>
+      </nav>
+      <Routes>
+        <Route path="/" element={<Slideshow userId={userId} />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/registro" element={<Register onRegister={handleRegister} />} />
+        <Route path="/perfil" element={<Profile userId={userId} />} />
+        <Route path="/imagen/:id" element={<ImageDetail userId={userId} />} />
+        <Route path="/subir-imagen" element={<SubirImagen userId={userId} />} />
+      </Routes>
+    </div>
   );
 };
 

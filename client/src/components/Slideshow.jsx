@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CommentSection from './CommentSection'; // Asegúrate de importar el componente CommentSection
-import './../styles/slideshow.css';
 
 const Slideshow = ({ userId }) => {
   const [images, setImages] = useState([]);
@@ -34,25 +33,32 @@ const Slideshow = ({ userId }) => {
   }
 
   return (
-    <div className="slideshow">
-      <div className="slideshow-container" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-        {images.map((image, index) => (
-          <div key={index} className="slide">
-            <img src={`http://localhost:5000/${image.ruta}`} alt={image.descripcion} />
-            {userId ? (
-              <CommentSection imageId={image.id} userId={userId} />
-            ) : (
-              <div className="comment-login-message">
-                <p>Logeate para comentar</p>
-              </div>
-            )}
-          </div>
-        ))}
+    <div className="slideshow-wrapper">
+      <div className="slideshow">
+        <div className="slideshow-container" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+          {images.map((image, index) => (
+            <div key={index} className="slide">
+              <img src={`http://localhost:5000/${image.ruta}`} alt={image.descripcion} />
+            </div>
+          ))}
+        </div>
       </div>
-      <button onClick={goToPrevious} className="prev-button">Anterior</button>
-      <button onClick={goToNext} className="next-button">Siguiente</button>
+  
+      <div className="navigation-buttons">
+        <button onClick={goToPrevious} className="prev-button">&lt;</button>
+        <button onClick={goToNext} className="next-button">&gt;</button>
+      </div>
+  
+      {userId ? (
+        <CommentSection imageId={images[currentIndex].id} userId={userId} />
+      ) : (
+        <div className="comment-login-message">
+          <p>Logeate para comentar</p>
+        </div>
+      )}
     </div>
   );
+  
 };
 
 export default Slideshow;

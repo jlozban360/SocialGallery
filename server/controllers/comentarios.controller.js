@@ -11,7 +11,14 @@ const ComentarioController = {
         Comentario.agregar(imagen_id, usuario_id, texto, (error, resultado) => {
             if (error) return res.status(500).json({ error: error.message });
 
-            res.json({ message: "Comentario agregado", id: resultado.insertId, imagen_id, usuario_id, texto });
+            res.json({
+                message: "Comentario agregado",
+                id: resultado.insertId,
+                imagen_id,
+                usuario_id,
+                texto,
+                fecha_comentario: new Date() // Añadir la fecha actual al comentario
+            });
         });
     },
 

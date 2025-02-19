@@ -14,7 +14,11 @@ const Comentario = {
 
     obtenerPorImagen: (imagen_id, callback) => {
         db.query(
-            "SELECT * FROM comentarios WHERE imagen_id = ?",
+            `SELECT comentarios.*, usuarios.nombre AS usuario, comentarios.fecha_comentario AS fecha
+             FROM comentarios
+             JOIN usuarios ON comentarios.usuario_id = usuarios.id
+             WHERE imagen_id = ?
+             ORDER BY fecha_comentario DESC`,
             [imagen_id],
             (error, resultados) => {
                 if (error) return callback(error);

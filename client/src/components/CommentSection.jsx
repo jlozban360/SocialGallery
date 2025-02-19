@@ -32,7 +32,8 @@ const CommentSection = ({ imageId, userId }) => {
       <h3>Comentarios</h3>
       {comments.map(comment => (
         <div key={comment.id} className="comment">
-          <p>{comment.texto}</p>
+          <p><strong>{comment.usuario}</strong>: {comment.texto}</p>
+          <p><small>Fecha: {new Date(comment.fecha).toLocaleString()}</small></p>
         </div>
       ))}
       {userId && (
