@@ -1,6 +1,6 @@
 # 📸 Social Gallery
 
-Social Gallery es una aplicación web que permite a los usuarios compartir y explorar galerías de imágenes.
+Social Gallery es una aplicación web con React y Node.js que permite a los usuarios compartir y explorar galerías de imágenes utilizando una base de datos.
 
 ---
 
