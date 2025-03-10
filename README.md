@@ -1,31 +1,68 @@
-1- Dependencias servidor
+# 📸 Social Gallery
 
-npm init -y
+Social Gallery es una aplicación web que permite a los usuarios compartir y explorar galerías de imágenes.
 
-npm install express mysql mysql2 cors dotenv multer bcryptjs jsonwebtoken
+---
 
-npm install nodemon --save-dev
+## 🚀 Instalación
 
-2- Iniciar servidor
+### 🔧 Dependencias del servidor
 
-cd server
+1. Inicializar el proyecto:
+   ```sh
+   npm init -y
+   ```
+2. Instalar las dependencias necesarias:
+   ```sh
+   npm install express mysql mysql2 cors dotenv multer bcryptjs jsonwebtoken
+   ```
+3. Instalar dependencias de desarrollo:
+   ```sh
+   npm install nodemon --save-dev
+   ```
 
-node server.js
+### 🏃 Iniciar el servidor
 
-2- Dependencias cliente
+1. Acceder al directorio del servidor:
+   ```sh
+   cd server
+   ```
+2. Ejecutar el servidor:
+   ```sh
+   node server.js
+   ```
 
-cd client
+---
 
-npm install react-router-dom axios
+### 🔧 Dependencias del cliente
 
-3 - Configuración
+1. Acceder al directorio del cliente:
+   ```sh
+   cd client
+   ```
+2. Instalar las dependencias necesarias:
+   ```sh
+   npm install react-router-dom axios
+   ```
 
-cd server 
+---
 
-El archivo de configuración está en el archivo .env para conectar la base de datos
+## ⚙️ Configuración
 
-4 - Base de datos
+1. Acceder al directorio del servidor:
+   ```sh
+   cd server
+   ```
+2. Configurar la conexión a la base de datos en el archivo `.env`.
 
-cd server
+---
 
-El archivo para montar la base de datos es socialgallery.sql
+## 🗄️ Base de Datos
+
+1. Acceder al directorio del servidor:
+   ```sh
+   cd server
+   ```
+2. Montar la base de datos utilizando el archivo `socialgallery.sql`.
+
+---
