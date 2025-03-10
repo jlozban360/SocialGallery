@@ -7,7 +7,7 @@ import Profile from './components/Profile';
 import ImageDetail from './components/ImageDetail';
 import SubirImagen from './components/UploadImage';
 import './styles/App.css';
-import './styles/Slideshow.css';
+import './styles/slideshow.css';
 
 const App = () => {
   const [userId, setUserId] = useState(null);
@@ -55,8 +55,8 @@ const App = () => {
             </>
           ) : (
             <>
-              <Link to="/login">Iniciar Sesión</Link>
-              <Link to="/registro">Registrarse</Link>
+              <button onClick={() => navigate('/login')}>Iniciar Sesión</button>
+              <button onClick={() => navigate('/registro')}>Registrarse</button>
             </>
           )}
         </div>

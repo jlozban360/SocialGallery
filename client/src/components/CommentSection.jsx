@@ -17,15 +17,22 @@ const CommentSection = ({ imageId, userId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5000/api/comentarios/agregar', { imagen_id: imageId, usuario_id: userId, texto: newComment })
-      .then(response => {
-        setComments([...comments, response.data]);
-        setNewComment('');
-      })
-      .catch(error => {
-        console.error('Error adding comment:', error);
-      });
-  };
+    axios.post('http://localhost:5000/api/comentarios/agregar', { 
+      imagen_id: imageId, 
+      usuario_id: userId, 
+      texto: newComment 
+    })
+    .then(() => {
+      setNewComment('');
+      return axios.get(`http://localhost:5000/api/comentarios/${imageId}`); // Obtener comentarios actualizados
+    })
+    .then(response => {
+      setComments(response.data); // Actualizar la lista de comentarios
+    })
+    .catch(error => {
+      console.error('Error adding comment:', error);
+    });
+  };  
 
   return (
     <div>
