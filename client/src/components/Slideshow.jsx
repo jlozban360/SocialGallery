@@ -29,7 +29,7 @@ const Slideshow = ({ userId }) => {
   };
 
   if (images.length === 0) {
-    return <div className="no-images">No hay imágenes disponibles.</div>;
+    return <div className="no-images">No hay imágenes subidas aún, sé el primero!.</div>;
   }
 
   return (
@@ -53,7 +53,7 @@ const Slideshow = ({ userId }) => {
         <CommentSection imageId={images[currentIndex].id} userId={userId} />
       ) : (
         <div className="comment-login-message">
-          <p>Logeate para comentar</p>
+          <p>Ingresa con tu usuario para comentar y ver los comentarios</p>
         </div>
       )}
     </div>

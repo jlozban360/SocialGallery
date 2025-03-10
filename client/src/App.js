@@ -7,7 +7,7 @@ import Profile from './components/Profile';
 import ImageDetail from './components/ImageDetail';
 import SubirImagen from './components/UploadImage';
 import './styles/App.css';
-import './styles/slideshow.css';
+import './styles/Slideshow.css';
 
 const App = () => {
   const [userId, setUserId] = useState(null);

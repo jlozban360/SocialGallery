@@ -9,6 +9,16 @@ body {
   padding: 0;
 }
 
+.no-images {
+  color: #1e90ff;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20%;
+  font-family: 'Arial', sans-serif;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .welcomeMsg {
 font-family: 'Dancing Script', cursive;
   font-size: 36px;
