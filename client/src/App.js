@@ -7,7 +7,7 @@ import Profile from './components/Profile';
 import ImageDetail from './components/ImageDetail';
 import SubirImagen from './components/UploadImage';
 import './styles/App.css';
-import './styles/Slideshow.css';
+import './styles/slideshow.css';
 
 const App = () => {
   const [userId, setUserId] = useState(null);
@@ -42,11 +42,14 @@ const App = () => {
   return (
     <div>
       <nav>
-        <div>
+        <div className="nav-left">
           <Link to="/">Inicio</Link>
           {userId && <Link to="/perfil">Perfil</Link>}
         </div>
-        <div>
+        <div className="nav-center">
+          <img src="/socialgallery_logo.png" alt="Social Gallery Logo" className="logo" />
+        </div>
+        <div className="nav-right">
           {userId ? (
             <>
               <span className="welcomeMsg">Bienvenido, {localStorage.getItem('username')}</span>

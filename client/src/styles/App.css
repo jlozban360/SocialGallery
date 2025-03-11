@@ -44,6 +44,10 @@ nav > div {
   align-items: center;
 }
 
+.logo {
+  height: 75px;
+}
+
 /* Left side for links */
 nav > div:first-child a {
   color: white;
